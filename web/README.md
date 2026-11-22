@@ -1,13 +1,13 @@
 # Project page
 
-Source for <https://projects.thedylone.com/Harvard-AM205-F25-Project/>: an in-browser
+Source for <https://projects.thedylone.com/image-compression/>: an in-browser
 compression demo (DWT / DFT / PCA) plus a short writeup of the report. Vite + TypeScript,
 no framework. The report itself (`main.tex`, `code/`, `images/`, `results/`) is untouched.
 
 ```sh
 cd web
 npm install
-npm run dev      # http://localhost:5173/Harvard-AM205-F25-Project/
+npm run dev      # http://localhost:5173/image-compression/
 npm test         # checks the TS port against the repo's Python (tests/fixtures)
 npm run build    # → web/dist
 ```
