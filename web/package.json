@@ -1,0 +1,19 @@
+{
+  "name": "am205-compression-page",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^6.4.6"
+  },
+  "dependencies": {
+    "katex": "^0.16.47"
+  }
+}
