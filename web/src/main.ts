@@ -16,7 +16,14 @@ for (const node of document.querySelectorAll<HTMLElement>("[data-tex-display]"))
 
 // ---------------------------------------------------------------- constants
 const MAX_SIDE = 512;
-const COLORS: Record<Method, string> = { DWT: "#3a5a9a", DFT: "#b8860b", PCA: "#9a3d63" };
+// Series colours from the shared kit, in its order (--series-1, -2, -3).
+const kitColor = (name: string, fallback: string) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+const COLORS: Record<Method, string> = {
+  DWT: kitColor("--series-1", "#1e2f4d"),
+  DFT: kitColor("--series-2", "#b8860b"),
+  PCA: kitColor("--series-3", "#4f7cac"),
+};
 const NAMES: Record<Method, string> = { DWT: "DWT", DFT: "DFT", PCA: "PCA" };
 const BASE = import.meta.env.BASE_URL;
 
@@ -25,7 +32,7 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 const ui = {
   samples: $("samples"),
   upload: $<HTMLInputElement>("upload"),
-  methods: $("methods"),
+  methods: $("method-switch"),
   keep: $<HTMLInputElement>("keep"),
   keepOut: $<HTMLOutputElement>("keep-out"),
   original: $<HTMLCanvasElement>("original"),
@@ -372,32 +379,18 @@ function renderKodak() {
 renderKodak();
 
 // ---------------------------------------------------------------- radio groups
+/** A row of toggle buttons where exactly one is pressed (kit .pk-segmented semantics). */
 function radioGroup(root: HTMLElement, attr: string, onPick: (v: string) => void) {
   const buttons = [...root.querySelectorAll<HTMLButtonElement>(`button[${attr}]`)];
-  const pick = (b: HTMLButtonElement, focus = false) => {
-    buttons.forEach((x) => {
-      x.setAttribute("aria-checked", String(x === b));
-      x.tabIndex = x === b ? 0 : -1;
-    });
-    if (focus) b.focus();
-    onPick(b.getAttribute(attr)!);
-  };
-  buttons.forEach((b, i) => {
-    b.tabIndex = b.getAttribute("aria-checked") === "true" ? 0 : -1;
-    b.addEventListener("click", () => pick(b));
-    b.addEventListener("keydown", (e) => {
-      const d = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
-      if (!d) return;
-      e.preventDefault();
-      pick(buttons[(i + d + buttons.length) % buttons.length], true);
-    });
-  });
-  return (value: string | null) =>
-    buttons.forEach((x) => {
-      const on = x.getAttribute(attr) === value;
-      x.setAttribute("aria-checked", String(on));
-      x.tabIndex = on ? 0 : -1;
-    });
+  const set = (value: string | null) =>
+    buttons.forEach((x) => x.setAttribute("aria-pressed", String(x.getAttribute(attr) === value)));
+  buttons.forEach((b) =>
+    b.addEventListener("click", () => {
+      set(b.getAttribute(attr));
+      onPick(b.getAttribute(attr)!);
+    }),
+  );
+  return set;
 }
 
 radioGroup(ui.methods, "data-method", (v) => {
