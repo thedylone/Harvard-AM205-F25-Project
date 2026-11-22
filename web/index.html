@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Compression: Wavelets, Fourier &amp; PCA</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Compression via Wavelets, Fourier and PCA | Dylan Chua</title>
     <meta
       name="description"
       content="Compress an image with the wavelet transform, the Fourier transform and PCA, right in your browser. Harvard AM205 project by Dylan Chua and Christina Wang."
     />
     <meta name="theme-color" content="#f9f9f6" />
-    <meta property="og:title" content="Image Compression via Wavelet Transform, Fourier Transform and PCA" />
+    <meta property="og:title" content="Image Compression via Wavelets, Fourier and PCA" />
     <meta
       property="og:description"
       content="An interactive comparison of DWT, DFT and PCA image compression. Harvard AM205, Fall 2025."
@@ -18,65 +18,55 @@
     <meta property="og:url" content="https://projects.thedylone.com/image-compression/" />
     <meta property="og:image" content="https://projects.thedylone.com/image-compression/gallery-cover.webp" />
     <link rel="canonical" href="https://projects.thedylone.com/image-compression/" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%231e2f4d%22/><rect x=%226%22 y=%226%22 width=%2210%22 height=%2210%22 fill=%22%23b8860b%22/><rect x=%2216%22 y=%226%22 width=%2210%22 height=%2210%22 fill=%22%23f9f9f6%22 opacity=%22.35%22/><rect x=%226%22 y=%2216%22 width=%2210%22 height=%2210%22 fill=%22%23f9f9f6%22 opacity=%22.35%22/><rect x=%2216%22 y=%2216%22 width=%2210%22 height=%2210%22 fill=%22%23f9f9f6%22 opacity=%22.15%22/></svg>"
-    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💫</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/project-kit.css" />
+    <!-- page-specific styles are bundled from src/style.css and injected after the kit -->
+    <script src="/project-kit.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#demo">Skip to the demo</a>
-
-    <header class="navbar">
-      <nav class="nav-inner" aria-label="Primary">
-        <a class="brand" href="https://projects.thedylone.com/">Dylan Chua</a>
-        <ul class="nav-links">
-          <li><a class="nav-link" href="#demo">Demo</a></li>
-          <li><a class="nav-link" href="#findings">Findings</a></li>
-          <li><a class="nav-link" href="https://projects.thedylone.com/">Projects</a></li>
-          <li>
-            <a class="nav-link" href="https://github.com/thedylone/image-compression" target="_blank" rel="noreferrer"
-              >GitHub</a
-            >
-          </li>
+    <header class="pk-header">
+      <div class="pk-header-inner">
+        <a class="pk-brand" href="https://projects.thedylone.com/">Dylan Chua</a>
+        <ul class="pk-nav">
+          <li><a href="https://projects.thedylone.com/">Projects</a></li>
+          <li><a href="https://github.com/thedylone/image-compression" target="_blank" rel="noreferrer">Source</a></li>
         </ul>
-      </nav>
+      </div>
     </header>
 
-    <main id="main">
+    <main class="pk-main">
       <!-- ================= HERO ================= -->
-      <section class="container hero">
-        <div class="hero-grid">
-        <div class="hero-text">
-        <p class="eyebrow">Harvard AM205 · Fall 2025</p>
-        <h1 class="heading-xl">Image compression via <em>wavelets</em>, Fourier &amp; PCA</h1>
-        <p class="byline">Dylan Chua &amp; Christina Wang</p>
-        <p class="lede">
-          Natural images are full of redundancy. Project one onto a good basis, keep only the largest coefficients, and
-          most of it survives. We compared three bases for doing that: the discrete wavelet transform, the discrete
-          Fourier transform and principal component analysis. Try them on an image below.
+      <section class="pk-hero pk-container">
+        <p class="pk-eyebrow">Project · Research</p>
+        <h1 class="pk-title">Image Compression via Wavelets, Fourier and PCA</h1>
+        <p class="pk-lede">
+          Natural images are full of redundancy: project one onto a good basis, keep only the largest coefficients, and
+          most of it survives. For Harvard AM205 (Fall 2025), Dylan Chua and Christina Wang compared three such bases, the
+          discrete wavelet transform, the discrete Fourier transform and PCA. Try them on an image below.
         </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#demo">Try the demo</a>
-          <a
-            class="btn secondary"
-            href="https://colab.research.google.com/drive/11epiX5Rcz0znSEh9Cu1VF3jZLJ4Lpm5M"
-            target="_blank"
-            rel="noreferrer"
-            >Colab notebook ↗</a
-          >
-          <a class="btn secondary" href="https://github.com/thedylone/image-compression" target="_blank" rel="noreferrer"
-            >Repository ↗</a
+        <div class="pk-actions">
+          <a class="pk-btn" href="#demo">Try the demo <span aria-hidden="true">↓</span></a>
+          <a class="pk-btn pk-btn-secondary" href="https://github.com/thedylone/image-compression" target="_blank" rel="noreferrer"
+            >View code <span aria-hidden="true">→</span></a
           >
         </div>
-        </div>
-        <figure class="hero-figure card">
-          <div class="strip">
+        <ul class="pk-tags">
+          <li class="pk-tag">Python</li>
+          <li class="pk-tag">NumPy</li>
+          <li class="pk-tag">PyWavelets</li>
+          <li class="pk-tag">scikit-learn</li>
+          <li class="pk-tag">TypeScript</li>
+          <li class="pk-tag">Web Workers</li>
+          <li class="pk-tag">KaTeX</li>
+        </ul>
+        <figure class="pk-figure pk-hero-media hero-strip">
+          <div class="pk-frame strip">
             <img
               src="/hero-strip.webp"
               width="512"
@@ -85,413 +75,436 @@
             />
             <ol class="strip-labels" aria-hidden="true">
               <li>Original</li>
-              <li><span class="swatch" style="background: var(--c-dwt)"></span>DWT</li>
-              <li><span class="swatch" style="background: var(--c-dft)"></span>DFT</li>
-              <li><span class="swatch" style="background: var(--c-pca)"></span>PCA</li>
+              <li><span class="swatch swatch-dwt"></span>DWT</li>
+              <li><span class="swatch swatch-dft"></span>DFT</li>
+              <li><span class="swatch swatch-pca"></span>PCA</li>
             </ol>
           </div>
           <figcaption>Same image, four bands: the original, then each method at a compression ratio of about 50.</figcaption>
         </figure>
-        </div>
-        <dl class="stats">
-          <div class="stat">
-            <dt>Methods</dt>
-            <dd>DWT · DFT · PCA</dd>
-          </div>
-          <div class="stat">
-            <dt>Compression ratios</dt>
-            <dd>1 – 10<sup>4</sup></dd>
-          </div>
-          <div class="stat">
-            <dt>Test images</dt>
-            <dd>50 + 24</dd>
-          </div>
-        </dl>
       </section>
+
+      <nav class="pk-subnav" aria-label="On this page">
+        <div class="pk-subnav-inner">
+          <ul>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#motivation">Motivation</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#findings">Findings</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+          </ul>
+        </div>
+      </nav>
 
       <!-- ================= DEMO ================= -->
-      <section class="container" id="demo" aria-labelledby="demo-title">
-        <div class="section-head">
-          <p class="eyebrow">01 · Interactive demo</p>
-          <h2 class="heading" id="demo-title">Compress an image</h2>
-          <p class="section-lede">
-            Everything runs in your browser on a grayscale copy of the image, at most 512 px on its longer side, using
-            the same algorithms as <code>code/compression.py</code>. Uploaded images are processed on your device and are
-            never sent anywhere.
+      <section id="demo" class="pk-section">
+        <div class="pk-container">
+          <p class="pk-eyebrow">01 — Demo</p>
+          <h2 class="pk-h2">Compress an image</h2>
+          <p class="pk-prose pk-muted">
+            Everything runs in your browser on a grayscale copy of the image, at most 512 px on its longer side, using the
+            same algorithms as <code>code/compression.py</code>. Uploaded images are processed on your device and are never
+            sent anywhere.
           </p>
-        </div>
 
-        <div class="card demo">
-          <div class="controls">
-            <fieldset class="control">
-              <legend class="label">Image</legend>
-              <div class="chips" id="samples" role="radiogroup" aria-label="Sample image">
-                <button type="button" class="chip" data-sample="raccoon" aria-checked="true" role="radio">Raccoon</button>
-                <button type="button" class="chip" data-sample="cameraman" aria-checked="false" role="radio">Cameraman</button>
-                <button type="button" class="chip" data-sample="astronaut" aria-checked="false" role="radio">Astronaut</button>
-                <button type="button" class="chip" data-sample="noise" aria-checked="false" role="radio">Uniform noise</button>
-                <label class="chip chip-upload" id="upload-label">
-                  <input type="file" id="upload" accept="image/*" class="visually-hidden" />
-                  <span>Upload…</span>
-                </label>
-              </div>
-            </fieldset>
-
-            <fieldset class="control">
-              <legend class="label">Method</legend>
-              <div class="segmented" id="methods" role="radiogroup" aria-label="Compression method">
-                <button type="button" role="radio" aria-checked="true" data-method="DWT">
-                  <span class="swatch" style="background: var(--c-dwt)"></span>DWT <small>bior4.4</small>
-                </button>
-                <button type="button" role="radio" aria-checked="false" data-method="DFT">
-                  <span class="swatch" style="background: var(--c-dft)"></span>DFT <small>2D FFT</small>
-                </button>
-                <button type="button" role="radio" aria-checked="false" data-method="PCA">
-                  <span class="swatch" style="background: var(--c-pca)"></span>PCA <small>rank k</small>
-                </button>
-              </div>
-            </fieldset>
-
-            <div class="control control-slider">
-              <div class="slider-head">
-                <label class="label" for="keep">Coefficients kept</label>
-                <output id="keep-out" for="keep" class="slider-value">2%</output>
-              </div>
-              <input type="range" id="keep" min="0" max="1000" step="1" value="575" aria-describedby="keep-help" />
-              <div class="slider-scale" aria-hidden="true"><span>0.01%</span><span>0.1%</span><span>1%</span><span>10%</span><span>100%</span></div>
-              <div class="presets">
-                <span class="label-inline" id="keep-help">Report examples</span>
-                <button type="button" class="chip chip-sm" data-cr="4000">CR ≈ 4000</button>
-                <button type="button" class="chip chip-sm" data-cr="500">CR ≈ 500</button>
-                <button type="button" class="chip chip-sm" data-cr="50">CR ≈ 50</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="figures" id="figures">
-            <figure class="figure">
-              <div class="frame"><canvas id="original" aria-label="Original image (grayscale)"></canvas></div>
-              <figcaption><span class="label">Original</span><span id="dims" class="fig-meta"></span></figcaption>
-            </figure>
-            <figure class="figure">
-              <div class="frame">
-                <canvas id="recon" aria-label="Reconstructed image"></canvas>
-                <div class="busy" id="busy" hidden><span></span></div>
-              </div>
-              <figcaption><span class="label" id="recon-label">Reconstruction</span><span id="recon-meta" class="fig-meta"></span></figcaption>
-            </figure>
-          </div>
-
-          <dl class="metrics" aria-live="polite">
-            <div class="metric">
-              <dt>Compression ratio</dt>
-              <dd id="m-cr">–</dd>
-            </div>
-            <div class="metric">
-              <dt id="m-kept-label">Kept</dt>
-              <dd id="m-kept">–</dd>
-            </div>
-            <div class="metric">
-              <dt>PSNR</dt>
-              <dd id="m-psnr">–</dd>
-            </div>
-            <div class="metric">
-              <dt>SSIM</dt>
-              <dd id="m-ssim">–</dd>
-            </div>
-            <div class="metric">
-              <dt>Relative error</dt>
-              <dd id="m-rel">–</dd>
-            </div>
-          </dl>
-          <p class="note" id="pca-note" hidden></p>
-
-          <div class="analysis">
-            <div class="panel">
-              <div class="panel-head">
-                <h3 class="panel-title">Error vs. compression, this image</h3>
-                <div class="toggle" role="radiogroup" aria-label="Error metric" id="metric-toggle">
-                  <button type="button" role="radio" aria-checked="true" data-metric="psnr">PSNR</button>
-                  <button type="button" role="radio" aria-checked="false" data-metric="relErr">Relative error</button>
+          <div class="pk-card demo">
+            <div class="controls">
+              <div class="control">
+                <p class="pk-label" id="samples-label">Image</p>
+                <div class="chips" id="samples" role="group" aria-labelledby="samples-label">
+                  <button type="button" class="chip" data-sample="raccoon" aria-pressed="true">Raccoon</button>
+                  <button type="button" class="chip" data-sample="cameraman" aria-pressed="false">Cameraman</button>
+                  <button type="button" class="chip" data-sample="astronaut" aria-pressed="false">Astronaut</button>
+                  <button type="button" class="chip" data-sample="noise" aria-pressed="false">Uniform noise</button>
+                  <label class="chip chip-upload" id="upload-label">
+                    <input type="file" id="upload" accept="image/*" class="pk-visually-hidden" />
+                    <span>Upload…</span>
+                  </label>
                 </div>
               </div>
-              <div id="curve"></div>
-              <div class="legend" aria-hidden="true">
-                <span><i style="background: var(--c-dwt)"></i>DWT</span>
-                <span><i style="background: var(--c-dft)"></i>DFT</span>
-                <span><i style="background: var(--c-pca)"></i>PCA</span>
+
+              <div class="control">
+                <p class="pk-label" id="methods-label">Method</p>
+                <div class="pk-segmented method-switch" id="method-switch" role="group" aria-labelledby="methods-label">
+                  <button type="button" aria-pressed="true" data-method="DWT">
+                    <span class="swatch swatch-dwt"></span>DWT <small>bior4.4</small>
+                  </button>
+                  <button type="button" aria-pressed="false" data-method="DFT">
+                    <span class="swatch swatch-dft"></span>DFT <small>2D FFT</small>
+                  </button>
+                  <button type="button" aria-pressed="false" data-method="PCA">
+                    <span class="swatch swatch-pca"></span>PCA <small>rank k</small>
+                  </button>
+                </div>
               </div>
-              <p class="panel-note">
-                All three methods on the current image. The dot marks the current setting. CR runs from 1 to 10<sup>4</sup>,
-                as in the report; PCA stops at its maximum CR of <span data-tex="mn/(m+n)"></span>.
-              </p>
+
+              <div class="pk-control control-slider">
+                <div class="slider-head">
+                  <label class="pk-label" for="keep">Coefficients kept</label>
+                  <output id="keep-out" for="keep">2%</output>
+                </div>
+                <input type="range" id="keep" min="0" max="1000" step="1" value="575" aria-describedby="keep-help" />
+                <div class="slider-scale" aria-hidden="true">
+                  <span>0.01%</span><span>0.1%</span><span>1%</span><span>10%</span><span>100%</span>
+                </div>
+                <div class="presets">
+                  <span class="pk-label" id="keep-help">Report examples</span>
+                  <button type="button" class="chip chip-sm" data-cr="4000">CR ≈ 4000</button>
+                  <button type="button" class="chip chip-sm" data-cr="500">CR ≈ 500</button>
+                  <button type="button" class="chip chip-sm" data-cr="50">CR ≈ 50</button>
+                </div>
+              </div>
             </div>
-            <div class="panel">
-              <div class="panel-head">
-                <h3 class="panel-title" id="map-title">Kept coefficients</h3>
+
+            <div class="figures" id="figures">
+              <figure class="pk-figure figure">
+                <div class="frame"><canvas id="original" aria-label="Original image (grayscale)"></canvas></div>
+                <figcaption><b>Original</b><span id="dims" class="fig-meta"></span></figcaption>
+              </figure>
+              <figure class="pk-figure figure">
+                <div class="frame">
+                  <canvas id="recon" aria-label="Reconstructed image"></canvas>
+                  <div class="busy" id="busy" hidden><span></span></div>
+                </div>
+                <figcaption><b id="recon-label">Reconstruction</b><span id="recon-meta" class="fig-meta"></span></figcaption>
+              </figure>
+            </div>
+
+            <dl class="metrics" aria-live="polite">
+              <div class="pk-stat">
+                <dt class="pk-label">Compression ratio</dt>
+                <dd class="pk-stat-value" id="m-cr">–</dd>
               </div>
-              <div class="map-wrap">
-                <canvas id="map" aria-describedby="map-note"></canvas>
-                <div id="scree" hidden></div>
+              <div class="pk-stat">
+                <dt class="pk-label" id="m-kept-label">Kept</dt>
+                <dd class="pk-stat-value" id="m-kept">–</dd>
               </div>
-              <p class="panel-note" id="map-note"></p>
+              <div class="pk-stat">
+                <dt class="pk-label">PSNR</dt>
+                <dd class="pk-stat-value" id="m-psnr">–</dd>
+              </div>
+              <div class="pk-stat">
+                <dt class="pk-label">SSIM</dt>
+                <dd class="pk-stat-value" id="m-ssim">–</dd>
+              </div>
+              <div class="pk-stat">
+                <dt class="pk-label">Relative error</dt>
+                <dd class="pk-stat-value" id="m-rel">–</dd>
+              </div>
+            </dl>
+            <p class="pk-callout note" id="pca-note" hidden></p>
+
+            <div class="analysis">
+              <div class="panel">
+                <div class="panel-head">
+                  <h3 class="pk-h3">Error vs. compression, this image</h3>
+                  <div class="pk-segmented" role="group" aria-label="Error metric" id="metric-toggle">
+                    <button type="button" aria-pressed="true" data-metric="psnr">PSNR</button>
+                    <button type="button" aria-pressed="false" data-metric="relErr">Relative error</button>
+                  </div>
+                </div>
+                <div id="curve"></div>
+                <div class="legend" aria-hidden="true">
+                  <span><i class="swatch-dwt"></i>DWT</span>
+                  <span><i class="swatch-dft"></i>DFT</span>
+                  <span><i class="swatch-pca"></i>PCA</span>
+                </div>
+                <p class="panel-note">
+                  All three methods on the current image. The dot marks the current setting. CR runs from 1 to
+                  10<sup>4</sup>, as in the report; PCA stops at its maximum CR of <span data-tex="mn/(m+n)"></span>.
+                </p>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <h3 class="pk-h3" id="map-title">Kept coefficients</h3>
+                </div>
+                <div class="map-wrap">
+                  <canvas id="map" aria-describedby="map-note"></canvas>
+                  <div id="scree" hidden></div>
+                </div>
+                <p class="panel-note" id="map-note"></p>
+              </div>
             </div>
           </div>
+          <p class="pk-muted small-note">
+            Sample images: the raccoon from <code>scipy.datasets</code> (the test image used in <code>code/main.py</code>),
+            the cameraman and astronaut from <code>skimage.data</code>, and i.i.d. uniform noise like the report's appendix.
+          </p>
         </div>
       </section>
 
-      <!-- ================= WHY ================= -->
-      <section class="container" aria-labelledby="why-title">
-        <div class="section-head">
-          <p class="eyebrow">02 · Motivation</p>
-          <h2 class="heading" id="why-title">Images live in a small subspace</h2>
-        </div>
-        <div class="prose two-col">
-          <div>
-            <p>
-              Raw images are extremely high dimensional, yet most of those dimensions hold either noise that matters
-              little to the eye or values nearly indistinguishable from their neighbours. A basic analysis of the
-              CIFAR-10 (50000 images, 32×32) and STL-10 (5000 images, 96×96) datasets shows this two ways:
-            </p>
-            <ol class="numbered">
-              <li>
-                <b>Low rank.</b> Flattening each image to a vector and running PCA on the dataset, the singular values
-                decay exponentially, so natural images lie in a much lower-rank space than their raw dimension.
-              </li>
-              <li>
-                <b>Local correlation.</b> The average covariance between two grayscale pixels is higher the closer they
-                are, so pixels are more closely related to their neighbours than to distant ones.
-              </li>
-            </ol>
-            <p>
-              Compression exploits this: decompose the image onto a suitable orthonormal (or biorthogonal) basis and
-              keep only the important coefficients. JPEG uses the discrete cosine transform; JPEG 2000 replaced it with
-              the discrete wavelet transform.
-            </p>
-          </div>
-          <div class="fig-pair">
-            <figure class="card fig-card">
-              <img src="/figures/singular_both.png" alt="Log-log plot: singular values of the first 300 principal components of CIFAR-10 and STL-10 fall steadily from about 1000 to under 100." loading="lazy" width="380" height="380" />
-              <figcaption>Singular values of the first 300 principal components.</figcaption>
-            </figure>
-            <figure class="card fig-card">
-              <img src="/figures/cov_both.png" alt="Average pixel covariance against Euclidean distance for CIFAR-10 and STL-10; both fall quickly with distance." loading="lazy" width="380" height="380" />
-              <figcaption>Average covariance between pixels against Euclidean distance.</figcaption>
-            </figure>
+      <!-- ================= MOTIVATION ================= -->
+      <section id="motivation" class="pk-section">
+        <div class="pk-container">
+          <p class="pk-eyebrow">02 — Motivation</p>
+          <h2 class="pk-h2">Images live in a small subspace</h2>
+          <div class="two-col">
+            <div class="pk-prose">
+              <p>
+                Raw images are extremely high dimensional, yet most of those dimensions hold either noise that matters
+                little to the eye or values nearly indistinguishable from their neighbours. A basic analysis of the
+                CIFAR-10 (50000 images, 32×32) and STL-10 (5000 images, 96×96) datasets shows this two ways:
+              </p>
+              <ol class="numbered">
+                <li>
+                  <b>Low rank.</b> Flattening each image to a vector and running PCA on the dataset, the singular values
+                  decay exponentially, so natural images lie in a much lower-rank space than their raw dimension.
+                </li>
+                <li>
+                  <b>Local correlation.</b> The average covariance between two grayscale pixels is higher the closer they
+                  are, so pixels are more closely related to their neighbours than to distant ones.
+                </li>
+              </ol>
+              <p>
+                Compression exploits this: decompose the image onto a suitable orthonormal (or biorthogonal) basis and
+                keep only the important coefficients. JPEG uses the discrete cosine transform; JPEG 2000 replaced it with
+                the discrete wavelet transform.
+              </p>
+            </div>
+            <div class="fig-pair">
+              <figure class="pk-figure">
+                <img src="/figures/singular_both.png" alt="Log-log plot: singular values of the first 300 principal components of CIFAR-10 and STL-10 fall steadily from about 1000 to under 100." loading="lazy" width="380" height="380" />
+                <figcaption>Singular values of the first 300 principal components</figcaption>
+              </figure>
+              <figure class="pk-figure">
+                <img src="/figures/cov_both.png" alt="Average pixel covariance against Euclidean distance for CIFAR-10 and STL-10; both fall quickly with distance." loading="lazy" width="380" height="380" />
+                <figcaption>Average covariance between pixels against Euclidean distance</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ================= METHODS ================= -->
-      <section class="container" id="methods-section" aria-labelledby="methods-title">
-        <div class="section-head">
-          <p class="eyebrow">03 · Methods</p>
-          <h2 class="heading" id="methods-title">Three bases, one recipe</h2>
-          <p class="section-lede">
+      <section id="methods" class="pk-section">
+        <div class="pk-container">
+          <p class="pk-eyebrow">03 — Methods</p>
+          <h2 class="pk-h2">Three bases, one recipe</h2>
+          <p class="pk-prose pk-muted">
             All images are converted to grayscale. The transforms come from PyWavelets (DWT), NumPy (DFT) and
-            scikit-learn (PCA); no further entropy coding is applied, so the focus is purely on lossy truncation.
+            scikit-learn (PCA); no further entropy coding is applied, so the focus is purely on lossy truncation. The
+            experiments themselves are in the
+            <a href="https://colab.research.google.com/drive/11epiX5Rcz0znSEh9Cu1VF3jZLJ4Lpm5M" target="_blank" rel="noreferrer">Colab notebook ↗</a>.
           </p>
-        </div>
-        <div class="method-grid">
-          <article class="card method">
-            <p class="method-tag"><span class="swatch" style="background: var(--c-dwt)"></span>DWT</p>
-            <h3>Discrete wavelet transform</h3>
-            <p>
-              A wavelet basis is built by translating and dilating a single mother wavelet <span data-tex="\psi"></span>,
-              for <span data-tex="(n,m)\in\mathbb{Z}^2"></span>:
-            </p>
-            <div class="math" data-tex-display="\psi_n^{(m)}(t) = \frac{1}{\sqrt{2^m}}\,\psi\!\left(\frac{t - 2^m n}{2^m}\right)"></div>
-            <p>
-              The oldest is the Haar wavelet, <span data-tex="\psi = 1"></span> on <span data-tex="[0,\tfrac12)"></span>
-              and <span data-tex="-1"></span> on <span data-tex="[\tfrac12,1)"></span>. Unlike Fourier modes, wavelets
-              are localised in both space and frequency, so they capture edges and textures with few coefficients.
-              JPEG 2000 uses <em>biorthogonal</em> wavelets, two families with
-              <span data-tex="\langle \psi_n^{(m)}, \tilde\psi_{\tilde n}^{(\tilde m)}\rangle = \delta_{n\tilde n}\delta_{m\tilde m}"></span>;
-              we use <code>bior4.4</code> at the maximum decomposition level.
-            </p>
-          </article>
-          <article class="card method">
-            <p class="method-tag"><span class="swatch" style="background: var(--c-dft)"></span>DFT</p>
-            <h3>Discrete Fourier transform</h3>
-            <p>The 2D DFT expands an <span data-tex="m\times n"></span> image in global complex sinusoids:</p>
-            <div class="math" data-tex-display="\hat f_{k\ell} = \sum_{x=0}^{m-1}\sum_{y=0}^{n-1} f_{xy}\, e^{-2\pi i\left(\frac{kx}{m}+\frac{\ell y}{n}\right)}"></div>
-            <p>
-              Fourier modes suit uniformly regular signals, but their support covers the whole image, so sharp local
-              changes such as edges need many coefficients. Computed with the FFT in
-              <span data-tex="O(mn\log mn)"></span>; the reconstruction is the real part of the inverse transform.
-            </p>
-          </article>
-          <article class="card method">
-            <p class="method-tag"><span class="swatch" style="background: var(--c-pca)"></span>PCA</p>
-            <h3>Principal component analysis</h3>
-            <p>
-              Treat the rows of the image <span data-tex="A"></span> as samples, centre each column, and keep the top
-              <span data-tex="k"></span> principal components: a rank-<span data-tex="k"></span> approximation from the SVD
-              <span data-tex="A - \bar A = U\Sigma V^{\top}"></span>,
-            </p>
-            <div class="math" data-tex-display="A_k = \bar A + U_k \Sigma_k V_k^{\top}"></div>
-            <p>
-              Unlike the DFT and DWT, the basis is not fixed: the singular vectors must be stored alongside the
-              coefficients. The SVD costs <span data-tex="O(mn\min(m,n))"></span>.
-            </p>
-          </article>
-        </div>
+          <div class="pk-grid">
+            <article class="pk-card method">
+              <p><span class="pk-tag method-tag"><span class="swatch swatch-dwt"></span>DWT</span></p>
+              <h3 class="pk-h3">Discrete wavelet transform</h3>
+              <p>
+                A wavelet basis is built by translating and dilating a single mother wavelet <span data-tex="\psi"></span>,
+                for <span data-tex="(n,m)\in\mathbb{Z}^2"></span>:
+              </p>
+              <div class="pk-math" data-tex-display="\psi_n^{(m)}(t) = \frac{1}{\sqrt{2^m}}\,\psi\!\left(\frac{t - 2^m n}{2^m}\right)"></div>
+              <p>
+                The oldest is the Haar wavelet, <span data-tex="\psi = 1"></span> on <span data-tex="[0,\tfrac12)"></span>
+                and <span data-tex="-1"></span> on <span data-tex="[\tfrac12,1)"></span>. Unlike Fourier modes, wavelets are
+                localised in both space and frequency, so they capture edges and textures with few coefficients. JPEG 2000
+                uses <em>biorthogonal</em> wavelets, two families with
+                <span data-tex="\langle \psi_n^{(m)}, \tilde\psi_{\tilde n}^{(\tilde m)}\rangle = \delta_{n\tilde n}\delta_{m\tilde m}"></span>;
+                we use <code>bior4.4</code> at the maximum decomposition level.
+              </p>
+            </article>
+            <article class="pk-card method">
+              <p><span class="pk-tag method-tag"><span class="swatch swatch-dft"></span>DFT</span></p>
+              <h3 class="pk-h3">Discrete Fourier transform</h3>
+              <p>The 2D DFT expands an <span data-tex="m\times n"></span> image in global complex sinusoids:</p>
+              <div class="pk-math" data-tex-display="\hat f_{k\ell} = \sum_{x=0}^{m-1}\sum_{y=0}^{n-1} f_{xy}\, e^{-2\pi i\left(\frac{kx}{m}+\frac{\ell y}{n}\right)}"></div>
+              <p>
+                Fourier modes suit uniformly regular signals, but their support covers the whole image, so sharp local
+                changes such as edges need many coefficients. Computed with the FFT in
+                <span data-tex="O(mn\log mn)"></span>; the reconstruction is the real part of the inverse transform.
+              </p>
+            </article>
+            <article class="pk-card method">
+              <p><span class="pk-tag method-tag"><span class="swatch swatch-pca"></span>PCA</span></p>
+              <h3 class="pk-h3">Principal component analysis</h3>
+              <p>
+                Treat the rows of the image <span data-tex="A"></span> as samples, centre each column, and keep the top
+                <span data-tex="k"></span> principal components: a rank-<span data-tex="k"></span> approximation from the SVD
+                <span data-tex="A - \bar A = U\Sigma V^{\top}"></span>,
+              </p>
+              <div class="pk-math" data-tex-display="A_k = \bar A + U_k \Sigma_k V_k^{\top}"></div>
+              <p>
+                Unlike the DFT and DWT, the basis is not fixed: the singular vectors must be stored alongside the
+                coefficients. The SVD costs <span data-tex="O(mn\min(m,n))"></span>.
+              </p>
+            </article>
+          </div>
 
-        <div class="card formulas">
-          <div>
-            <p class="label">Thresholding</p>
-            <p>
-              For the DWT and DFT, pick a threshold <span data-tex="T"></span> so that the
-              <span data-tex="k_f"></span> largest-magnitude coefficients survive and set the rest to zero. For PCA, keep
-              rank <span data-tex="k \le \operatorname{rank}(A)"></span>.
-            </p>
-          </div>
-          <div>
-            <p class="label">Compression ratio</p>
-            <div class="math" data-tex-display="\mathrm{CR}_{\mathrm{DWT}} = \mathrm{CR}_{\mathrm{DFT}} = \frac{\#\text{ coefficients}}{\#\text{ nonzero coefficients}},\qquad \mathrm{CR}_{\mathrm{PCA}} = \frac{mn}{k(m+n)}"></div>
-          </div>
-          <div>
-            <p class="label">Quality</p>
-            <div class="math" data-tex-display="\mathrm{PSNR} = 10\log_{10}\frac{255^2}{\tfrac{1}{mn}\lVert A - \hat A\rVert_F^2},\qquad \text{rel. error} = \frac{\lVert A-\hat A\rVert_F}{\lVert A\rVert_F}"></div>
-            <p class="small">
-              PSNR tends to infinity for a lossless reconstruction. SSIM, which tracks perceived quality, is reported
-              alongside it, as in the report.
-            </p>
+          <div class="pk-card formulas">
+            <div>
+              <p class="pk-label">Thresholding</p>
+              <p>
+                For the DWT and DFT, pick a threshold <span data-tex="T"></span> so that the
+                <span data-tex="k_f"></span> largest-magnitude coefficients survive and set the rest to zero. For PCA, keep
+                rank <span data-tex="k \le \operatorname{rank}(A)"></span>.
+              </p>
+            </div>
+            <div>
+              <p class="pk-label">Compression ratio</p>
+              <div class="pk-math" data-tex-display="\mathrm{CR}_{\mathrm{DWT}} = \mathrm{CR}_{\mathrm{DFT}} = \frac{\#\text{ coefficients}}{\#\text{ nonzero coefficients}}"></div>
+              <div class="pk-math" data-tex-display="\mathrm{CR}_{\mathrm{PCA}} = \frac{mn}{k(m+n)}"></div>
+            </div>
+            <div>
+              <p class="pk-label">Quality</p>
+              <div class="pk-math" data-tex-display="\mathrm{PSNR} = 10\log_{10}\frac{255^2}{\tfrac{1}{mn}\lVert A - \hat A\rVert_F^2}"></div>
+              <div class="pk-math" data-tex-display="\text{rel. error} = \frac{\lVert A-\hat A\rVert_F}{\lVert A\rVert_F}"></div>
+              <p>
+                PSNR tends to infinity for a lossless reconstruction. SSIM, which tracks perceived quality, is reported
+                alongside it, as in the report.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ================= FINDINGS ================= -->
-      <section class="container" id="findings" aria-labelledby="findings-title">
-        <div class="section-head">
-          <p class="eyebrow">04 · Findings</p>
-          <h2 class="heading" id="findings-title">What the experiments showed</h2>
-          <p class="section-lede">
+      <section id="findings" class="pk-section">
+        <div class="pk-container">
+          <p class="pk-eyebrow">04 — Findings</p>
+          <h2 class="pk-h2">What the experiments showed</h2>
+          <p class="pk-prose pk-muted">
             The three methods were run with CR from 1 to 10<sup>4</sup> on two datasets from an AVIF image-encoding
-            comparison: <b>subset1</b> (high-res, 50 images, mean 1212×918, 1.1 MP) and <b>Kodak</b> (med-res, 24
-            images, mean 704×576, 0.4 MP).
+            comparison: <b>subset1</b> (high-res, 50 images, mean 1212×918, 1.1 MP) and <b>Kodak</b> (med-res, 24 images,
+            mean 704×576, 0.4 MP).
           </p>
-        </div>
-
-        <div class="findings-layout">
-          <div class="panel card">
-            <div class="panel-head">
-              <h3 class="panel-title">Kodak dataset, mean over 24 images</h3>
-              <div class="toggle" role="radiogroup" aria-label="Kodak metric" id="kodak-toggle">
-                <button type="button" role="radio" aria-checked="true" data-metric="psnr">PSNR</button>
-                <button type="button" role="radio" aria-checked="false" data-metric="ssim">SSIM</button>
-              </div>
+          <dl class="stats">
+            <div class="pk-stat">
+              <dt class="pk-label">Methods</dt>
+              <dd class="pk-stat-value">DWT · DFT · PCA</dd>
             </div>
-            <div id="kodak"></div>
-            <div class="legend" aria-hidden="true">
-              <span><i style="background: var(--c-dwt)"></i>DWT</span>
-              <span><i style="background: var(--c-dft)"></i>DFT</span>
-              <span><i style="background: var(--c-pca)"></i>PCA</span>
+            <div class="pk-stat">
+              <dt class="pk-label">Compression ratios</dt>
+              <dd class="pk-stat-value">1 – 10<sup>4</sup></dd>
+            </div>
+            <div class="pk-stat">
+              <dt class="pk-label">Test images</dt>
+              <dd class="pk-stat-value">50 + 24</dd>
+            </div>
+          </dl>
+
+          <div class="findings-layout">
+            <div class="pk-card panel">
+              <div class="panel-head">
+                <h3 class="pk-h3">Kodak dataset, mean over 24 images</h3>
+                <div class="pk-segmented" role="group" aria-label="Kodak metric" id="kodak-toggle">
+                  <button type="button" aria-pressed="true" data-metric="psnr">PSNR</button>
+                  <button type="button" aria-pressed="false" data-metric="ssim">SSIM</button>
+                </div>
+              </div>
+              <div id="kodak"></div>
+              <div class="legend" aria-hidden="true">
+                <span><i class="swatch-dwt"></i>DWT</span>
+                <span><i class="swatch-dft"></i>DFT</span>
+                <span><i class="swatch-pca"></i>PCA</span>
+              </div>
+              <p class="panel-note">
+                Plotted from the results saved in <code>results/med_res_*.pkl</code>, binned by CR; shaded bands are 95%
+                confidence intervals of the mean.
+              </p>
+            </div>
+
+            <ol class="findings">
+              <li>
+                <h3 class="pk-h3">Up to CR &lt; 10<sup>3</sup>, DWT is best, then DFT, then PCA</h3>
+                <p>
+                  This holds on both datasets and under both PSNR and SSIM. Wavelet coefficients are highly sparse, so a
+                  small fraction captures most of the image; the DFT is less sparse because it captures only global
+                  frequency structure.
+                </p>
+              </li>
+              <li>
+                <h3 class="pk-h3">At very high CR, DFT overtakes DWT</h3>
+                <p>
+                  On the high-res dataset DWT quality drops sharply beyond CR ≈ 10<sup>3</sup>. Heavily truncated wavelets
+                  keep only local changes, the edges, so the image looks almost binary, while the DFT keeps global low
+                  frequencies and gives a smoother, more recognisable picture.
+                </p>
+              </li>
+              <li>
+                <h3 class="pk-h3">PCA's compression ratio has a hard ceiling</h3>
+                <p>
+                  With <span data-tex="k = 1"></span>,
+                  <span data-tex="\max \mathrm{CR}_{\mathrm{PCA}} = \frac{mn}{m+n}"></span>, whereas DWT and DFT can reach
+                  <span data-tex="O(mn)"></span>: PCA has to store its singular vectors, while Fourier and wavelet bases are
+                  fixed and computed on the fly.
+                </p>
+              </li>
+              <li>
+                <h3 class="pk-h3">PCA is the slowest, especially at low CR</h3>
+                <p>
+                  The LAPACK SVD behind scikit-learn takes <span data-tex="O(mn\min(m,n))"></span>, and more components
+                  must be computed as CR falls. The DFT is <span data-tex="O(mn\log mn)"></span> and the DWT only
+                  <span data-tex="O(mn)"></span>, though the DFT ran slightly faster than the DWT in practice.
+                </p>
+              </li>
+              <li>
+                <h3 class="pk-h3">Higher resolution holds quality better</h3>
+                <p>Larger images carry more redundancy, so each retained coefficient preserves more information.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="pk-card examples">
+            <h3 class="pk-h3">Reconstructions of the raccoon test image (768×1024) in the report</h3>
+            <div class="pk-table-wrap">
+              <table class="pk-table">
+                <thead>
+                  <tr>
+                    <th scope="col">CR</th>
+                    <th scope="col"><span class="swatch swatch-dwt"></span>DWT</th>
+                    <th scope="col"><span class="swatch swatch-dft"></span>DFT</th>
+                    <th scope="col"><span class="swatch swatch-pca"></span>PCA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">≈ 4000</th>
+                    <td>10.5 dB · 0.10</td>
+                    <td><b>17.9 dB · 0.33</b></td>
+                    <td class="muted">beyond max CR</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">≈ 500</th>
+                    <td><b>20.9 dB · 0.41</b></td>
+                    <td>20.6 dB · 0.39</td>
+                    <td>15.5 dB · 0.32</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">≈ 50</th>
+                    <td><b>26.3 dB · 0.73</b></td>
+                    <td>24.1 dB · 0.59</td>
+                    <td>19.1 dB · 0.39</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <p class="panel-note">
-              Plotted from the results saved in <code>results/med_res_*.pkl</code>, binned by CR; shaded bands are 95%
-              confidence intervals of the mean.
+              PSNR · SSIM. At CR ≈ 500 PCA scores better than DWT does at CR ≈ 4000, yet its reconstruction is barely
+              recognisable while the DWT one still shows the content: the metrics don't tell the whole story. At CR ≈ 50
+              the DWT is sharper than the fuzzier DFT. Use the presets in the demo to see the same settings (on a half-size
+              copy).
             </p>
           </div>
-
-          <ol class="findings">
-            <li>
-              <h3>Up to CR &lt; 10<sup>3</sup>, DWT is best, then DFT, then PCA.</h3>
-              <p>
-                This holds on both datasets and under both PSNR and SSIM. Wavelet coefficients are highly sparse, so a
-                small fraction captures most of the image; the DFT is less sparse because it captures only global
-                frequency structure.
-              </p>
-            </li>
-            <li>
-              <h3>At very high CR, DFT overtakes DWT.</h3>
-              <p>
-                On the high-res dataset DWT quality drops sharply beyond CR ≈ 10<sup>3</sup>. Heavily truncated wavelets
-                keep only local changes, the edges, so the image looks almost binary, while the DFT keeps global low
-                frequencies and gives a smoother, more recognisable picture.
-              </p>
-            </li>
-            <li>
-              <h3>PCA's compression ratio has a hard ceiling.</h3>
-              <p>
-                With <span data-tex="k = 1"></span>,
-                <span data-tex="\max \mathrm{CR}_{\mathrm{PCA}} = \frac{mn}{m+n}"></span>, whereas DWT and DFT can reach
-                <span data-tex="O(mn)"></span>: PCA has to store its singular vectors, while Fourier and wavelet bases are
-                fixed and computed on the fly.
-              </p>
-            </li>
-            <li>
-              <h3>PCA is the slowest, especially at low CR.</h3>
-              <p>
-                The LAPACK SVD behind scikit-learn takes <span data-tex="O(mn\min(m,n))"></span>, and more components
-                must be computed as CR falls. The DFT is <span data-tex="O(mn\log mn)"></span> and the DWT only
-                <span data-tex="O(mn)"></span>, though the DFT ran slightly faster than the DWT in practice.
-              </p>
-            </li>
-            <li>
-              <h3>Higher resolution holds quality better.</h3>
-              <p>Larger images carry more redundancy, so each retained coefficient preserves more information.</p>
-            </li>
-          </ol>
         </div>
+      </section>
 
-        <div class="card examples">
-          <div class="panel-head">
-            <h3 class="panel-title">Reconstructions of the raccoon test image (768×1024) in the report</h3>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">CR</th>
-                  <th scope="col"><span class="swatch" style="background: var(--c-dwt)"></span>DWT</th>
-                  <th scope="col"><span class="swatch" style="background: var(--c-dft)"></span>DFT</th>
-                  <th scope="col"><span class="swatch" style="background: var(--c-pca)"></span>PCA</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">≈ 4000</th>
-                  <td>10.5 dB · 0.10</td>
-                  <td><b>17.9 dB · 0.33</b></td>
-                  <td class="muted">beyond max CR</td>
-                </tr>
-                <tr>
-                  <th scope="row">≈ 500</th>
-                  <td><b>20.9 dB · 0.41</b></td>
-                  <td>20.6 dB · 0.39</td>
-                  <td>15.5 dB · 0.32</td>
-                </tr>
-                <tr>
-                  <th scope="row">≈ 50</th>
-                  <td><b>26.3 dB · 0.73</b></td>
-                  <td>24.1 dB · 0.59</td>
-                  <td>19.1 dB · 0.39</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="panel-note">
-            PSNR · SSIM. At CR ≈ 500 PCA scores better than DWT does at CR ≈ 4000, yet its reconstruction is barely
-            recognisable while the DWT one still shows the content: the metrics don't tell the whole story. At CR ≈ 50
-            the DWT is sharper than the fuzzier DFT. Use the presets in the demo to see the same settings (on a half-size
-            copy).
-          </p>
-        </div>
-
-        <div class="conclusion">
-          <p class="eyebrow">Conclusion</p>
-          <div class="conclusion-grid">
+      <!-- ================= CONCLUSION ================= -->
+      <section id="conclusion" class="pk-section">
+        <div class="pk-container">
+          <p class="pk-eyebrow">05 — Conclusion</p>
+          <h2 class="pk-h2">Which method to use</h2>
+          <div class="pk-grid conclusion-grid">
             <div>
-              <h3><span class="swatch" style="background: var(--c-dwt)"></span>DWT is the best general choice.</h3>
+              <h3 class="pk-h3"><span class="swatch swatch-dwt"></span>DWT is the best general choice</h3>
               <p>Low runtime complexity, sparse coefficients, the highest quality in most cases, and reconstructions that look better at reasonable CRs.</p>
             </div>
             <div>
-              <h3><span class="swatch" style="background: var(--c-dft)"></span>DFT wins when resources are scarce.</h3>
+              <h3 class="pk-h3"><span class="swatch swatch-dft"></span>DFT wins when resources are scarce</h3>
               <p>It ran slightly faster in practice and gives the best quality when images must be compressed extremely hard.</p>
             </div>
             <div>
-              <h3><span class="swatch" style="background: var(--c-pca)"></span>PCA performs worst.</h3>
+              <h3 class="pk-h3"><span class="swatch swatch-pca"></span>PCA performs worst</h3>
               <p>Its runtime blows up at low CR, its metrics are the lowest, and even reasonable metrics hide poor reconstructions. Invaluable elsewhere, unsuitable for image compression.</p>
             </div>
           </div>
@@ -499,18 +512,15 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>Dylan Chua &amp; Christina Wang · Harvard AM205 · December 2025</span>
-        <span class="footer-links">
-          <a href="https://github.com/thedylone/image-compression" target="_blank" rel="noreferrer">Repository</a>
-          <a href="https://colab.research.google.com/drive/11epiX5Rcz0znSEh9Cu1VF3jZLJ4Lpm5M" target="_blank" rel="noreferrer">Colab</a>
+    <footer class="pk-footer">
+      <div class="pk-footer-inner">
+        <span>© 2026 Dylan Chua</span>
+        <div class="pk-footer-links">
           <a href="https://projects.thedylone.com/">All projects</a>
-        </span>
+          <a href="https://thedylone.pages.dev">Portfolio</a>
+          <a href="https://github.com/thedylone" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
       </div>
-      <p class="footer-credit">
-        Sample images: raccoon from <code>scipy.datasets</code>; cameraman and astronaut from <code>skimage.data</code>.
-      </p>
     </footer>
 
     <script type="module" src="/src/main.ts"></script>

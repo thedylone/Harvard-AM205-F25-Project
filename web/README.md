@@ -2,7 +2,9 @@
 
 Source for <https://projects.thedylone.com/image-compression/>: an in-browser
 compression demo (DWT / DFT / PCA) plus a short writeup of the report. Vite + TypeScript,
-no framework. The report itself (`main.tex`, `code/`, `images/`, `results/`) is untouched.
+no framework. Styled with the shared project-page kit: `public/project-kit.css` and
+`public/project-kit.js` are verbatim copies of v1.2 from the `projects-gallery` branch of
+thedylone.github.io (don't edit them here); page-only styles are in `src/style.css`. The report itself (`main.tex`, `code/`, `images/`, `results/`) is untouched.
 
 ```sh
 cd web
